@@ -3,6 +3,7 @@
     name:
       - base-devel
       - git
+      - jq
       - less
       - man-db
       - networkmanager
