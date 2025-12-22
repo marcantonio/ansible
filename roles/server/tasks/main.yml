@@ -1,0 +1,20 @@
+- name: Install OpenSSH
+  pacman:
+    name: openssh
+    state: present
+  become: true
+
+- name: Disable root login via ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PermitRootLogin"
+    line: "PermitRootLogin no"
+    become: true
+    notify: Restart ssh
+
+- name: Enable and start ssh
+  systemd:
+    name: sshd
+    enabled: true
+    state: started
+  become: true

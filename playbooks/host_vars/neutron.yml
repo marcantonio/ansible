@@ -1,0 +1,6 @@
+hostname: neutron
+enabled_roles:
+  - base
+  - server
+packages:
+  - emacs-nox

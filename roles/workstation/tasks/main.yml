@@ -1,0 +1,17 @@
+- name: Install workstation packages
+  pacman:
+    name:
+      - firefox
+      - ghostty
+      - hypridle
+      - hyprland
+      - hyprlock
+      - pipewire
+      - sddm
+      - ttf-jetbrains-mono-nerd
+      - waybar
+      - wireplumber
+      - wl-clipboard
+      - xdg-desktop-portal-hyprland
+    state: present
+  become: true

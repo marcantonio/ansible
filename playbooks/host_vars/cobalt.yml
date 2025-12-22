@@ -1,0 +1,6 @@
+hostname: cobalt
+enabled_roles:
+  - base
+  - workstation
+packages:
+  - wev

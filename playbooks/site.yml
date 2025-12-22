@@ -1,0 +1,7 @@
+- name: Configure system
+  hosts: all
+  tasks:
+    - name: Include enabled roles
+      include_role:
+        name: "{{ item }}"
+      loop: "{{ enabled_roles }}"

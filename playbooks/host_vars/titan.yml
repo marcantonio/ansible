@@ -1,0 +1,5 @@
+hostname: titan
+enabled_roles:
+  - base
+  - workstation
+packages: []
