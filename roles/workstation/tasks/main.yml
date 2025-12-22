@@ -1,6 +1,7 @@
 - name: Install workstation packages
   pacman:
     name:
+      - emacs-wayland
       - firefox
       - ghostty
       - hypridle
