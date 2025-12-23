@@ -4,3 +4,4 @@ enabled_roles:
   - server
 packages:
   - emacs-nox
+aur_packages: []

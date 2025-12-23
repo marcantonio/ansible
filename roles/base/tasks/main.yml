@@ -15,12 +15,29 @@
     state: present
   become: true
 
+- name: Install yay
+  kewlfft.aur.aur:
+    name: yay-bin
+    use: makepkg
+    state: present
+  become: true
+  become_user: mas
+
 - name: Install host-specific packages
   pacman:
     name: "{{ packages }}"
     state: present
   become: true
   when: packages | length > 0
+
+- name: Install host-specific AUR packages
+  kewlfft.aur.aur:
+    name: "{{ aur_packages }}"
+    use: yay
+    state: present
+  become: true
+  become_user: mas
+  when: aur_packages | length > 0
 
 - name: No sudo password for me
   copy:

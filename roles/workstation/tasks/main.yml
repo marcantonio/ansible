@@ -1,18 +1,71 @@
 - name: Install workstation packages
   pacman:
     name:
+      - bash-completion
+      - bitwarden
       - emacs-wayland
       - firefox
       - ghostty
+      - gnome-keyring
       - hypridle
       - hyprland
       - hyprlock
+      - hyprpaper
+      - mako
       - pipewire
       - sddm
       - ttf-jetbrains-mono-nerd
+      - uwsm
       - waybar
       - wireplumber
       - wl-clipboard
       - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - xdg-user-dirs
+      - xdg-user-dirs-gtk
     state: present
+  become: true
+
+- name: Install workstation AUR packages
+  kewlfft.aur.aur:
+    name:
+      - xdg-terminal-exec
+    use: yay
+    state: present
+  become: true
+  become_user: mas
+
+- name: Create keyring directory
+  file:
+    path: "/home/mas/.local/share/keyrings"
+    state: directory
+    owner: mas
+    group: mas
+    mode: "0700"
+  become: true
+
+- name: Create default keyring
+  copy:
+    content: |
+      [keyring]
+      display-name=Default keyring
+      ctime={{ ansible_facts["date_time"].epoch }}
+      mtime=0
+      lock-on-idle=false
+      lock-after=false
+    dest: "/home/mas/.local/share/keyrings/Default_keyring.keyring"
+    owner: mas
+    group: mas
+    mode: "0600"
+    force: false
+  become: true
+
+- name: Create default keyring pointer
+  copy:
+    content: "Default_keyring\n"
+    dest: "/home/mas/.local/share/keyrings/default"
+    owner: mas
+    group: mas
+    mode: "0644"
+    force: false
   become: true
