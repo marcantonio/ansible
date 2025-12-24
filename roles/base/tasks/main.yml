@@ -71,9 +71,10 @@
     owner: "{{ file_item.owner }}"
     group: "{{ file_item.group }}"
     mode: "0644"
+    force: file_item.force
   loop:
-    - { dir: /root/.emacs.d, owner: root, group: root }
-    - { dir: /home/mas/.emacs.d, owner: mas, group: mas }
+    - { dir: /root/.emacs.d, owner: root, group: root, force: true }
+    - { dir: /home/mas/.emacs.d, owner: mas, group: mas, force: false }
   loop_control:
     loop_var: file_item
   become: true

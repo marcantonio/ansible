@@ -76,7 +76,7 @@
 
 - name: Enable first-login service
   file:
-    path: /home/mas/.config/systemd/user/first-login.service
+    src: /home/mas/.config/systemd/user/first-login.service
     dest: /home/mas/.config/systemd/user/default.target.wants/first-login.service
     state: link
     owner: mas
