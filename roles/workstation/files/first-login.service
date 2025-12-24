@@ -1,0 +1,10 @@
+[Unit]
+Description=Run one-time first login tasks (per user)
+ConditionPathExists=!%h/.local/state/first-login.lock
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/first-login.sh
+
+[Install]
+WantedBy=default.target

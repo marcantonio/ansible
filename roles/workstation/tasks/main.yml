@@ -13,7 +13,10 @@
       - hyprpaper
       - mako
       - pipewire
+      - polkit-gnome
+      - power-profiles-daemon
       - sddm
+      - swayosd
       - ttf-jetbrains-mono-nerd
       - uwsm
       - waybar
@@ -35,6 +38,52 @@
   become: true
   become_user: mas
 
+- name: Create ~/.local/bin
+  file:
+    path: /home/mas/.local/bin
+    state: directory
+    owner: mas
+    group: mas
+    mode: "0755"
+  become: true
+
+- name: Copy first-login script
+  copy:
+    src: first-login.sh
+    dest: /home/mas/.local/bin/first-login.sh
+    owner: mas
+    group: mas
+    mode: "0755"
+  become: true
+
+- name: Create ~/.config/systemd
+  file:
+    path: /home/mas/.config/systemd/user
+    state: directory
+    owner: mas
+    group: mas
+    mode: "0755"
+  become: true
+
+- name: Copy first-login service
+  copy:
+    src: first-login.service
+    dest: /home/mas/.config/systemd/user/first-login.service
+    owner: mas
+    group: mas
+    mode: "0644"
+  become: true
+
+- name: Enable first-login service
+  systemd:
+    name: first-login.service
+    enabled: true
+    scope: user
+    daemon_reload: true
+  become: true
+  become_user: mas
+
+### Move to first-login?
 - name: Create keyring directory
   file:
     path: "/home/mas/.local/share/keyrings"
