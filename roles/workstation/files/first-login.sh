@@ -30,8 +30,8 @@ fi
 set_default_keyring
 
 # Elephant
-#elephant service enable
-#systemctl --user start elephant.service
+elephant service enable
+systemctl --user start elephant.service
 
 umask 077
 : > "$LOCK_FILE"
