@@ -4,4 +4,3 @@ enabled_roles:
   - workstation
 packages:
   - wev
-aur_packages: []

@@ -1,84 +1,54 @@
+# - name: Install workstation AUR packages
+#   kewlfft.aur.aur:
+#     name:
+#       - xdg-terminal-exec
+#     use: yay
+#     state: present
+#   become: true
+#   become_user: mas
+
+# - name: Copy first-login script
+#   copy:
+#     src: first-login.sh
+#     dest: /home/mas/.local/bin/first-login.sh
+#     owner: mas
+#     group: mas
+#     mode: "0755"
+#   become: true
+
+# - name: Create ~/.config/systemd directories
+#   file:
+#     path: /home/mas/.config/systemd/user/default.target.wants
+#     state: directory
+#     owner: mas
+#     group: mas
+#     mode: "0755"
+#   become: true
+
+# - name: Copy first-login service
+#   copy:
+#     src: first-login.service
+#     dest: /home/mas/.config/systemd/user/first-login.service
+#     owner: mas
+#     group: mas
+#     mode: "0644"
+#   become: true
+
+# - name: Enable first-login service
+#   file:
+#     src: /home/mas/.config/systemd/user/first-login.service
+#     dest: /home/mas/.config/systemd/user/default.target.wants/first-login.service
+#     state: link
+#     owner: mas
+#     group: mas
+#   become: true
+
 - name: Install workstation packages
   pacman:
     name:
-      - bash-completion
       - bitwarden
       - emacs-wayland
       - firefox
       - ghostty
-      - gnome-keyring
-      - hypridle
-      - hyprland
-      - hyprlock
-      - hyprpaper
-      - mako
-      - pipewire
-      - polkit-gnome
-      - power-profiles-daemon
-      - sddm
-      - swayosd
-      - ttf-jetbrains-mono-nerd
-      - uwsm
-      - waybar
-      - wireplumber
-      - wl-clipboard
-      - xdg-desktop-portal-hyprland
-      - xdg-desktop-portal-gtk
-      - xdg-user-dirs
-      - xdg-user-dirs-gtk
     state: present
-  become: true
-
-- name: Install workstation AUR packages
-  kewlfft.aur.aur:
-    name:
-      - xdg-terminal-exec
-    use: yay
-    state: present
-  become: true
-  become_user: mas
-
-- name: Create ~/.local/bin
-  file:
-    path: /home/mas/.local/bin
-    state: directory
-    owner: mas
-    group: mas
-    mode: "0755"
-  become: true
-
-- name: Copy first-login script
-  copy:
-    src: first-login.sh
-    dest: /home/mas/.local/bin/first-login.sh
-    owner: mas
-    group: mas
-    mode: "0755"
-  become: true
-
-- name: Create ~/.config/systemd directories
-  file:
-    path: /home/mas/.config/systemd/user/default.target.wants
-    state: directory
-    owner: mas
-    group: mas
-    mode: "0755"
-  become: true
-
-- name: Copy first-login service
-  copy:
-    src: first-login.service
-    dest: /home/mas/.config/systemd/user/first-login.service
-    owner: mas
-    group: mas
-    mode: "0644"
-  become: true
-
-- name: Enable first-login service
-  file:
-    src: /home/mas/.config/systemd/user/first-login.service
-    dest: /home/mas/.config/systemd/user/default.target.wants/first-login.service
-    state: link
-    owner: mas
-    group: mas
   become: true

@@ -3,4 +3,3 @@ enabled_roles:
   - base
   - workstation
 packages: []
-aur_packages: []
