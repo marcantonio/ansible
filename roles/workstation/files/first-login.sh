@@ -52,7 +52,7 @@ WEB_APPS=(
     "Zoom"
 )
 for app in "${WEB_APPS[@]}"; do
-    omarchy-webapp-remove "$app"
+    /home/mas/.local/share/omarchy/bin/omarchy-webapp-remove "$app"
 done
 
 # Emacs detritus
