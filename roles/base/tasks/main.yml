@@ -1,21 +1,17 @@
-# - name: Install base packages
-#   pacman:
-#     name:
-#       - base-devel
-#       - git
-#       - jq
-#       - less
-#       - man-db
-#       - networkmanager
-#       - openssh
-#       - plocate
-#       - ripgrep
-#       - systemd-resolvconf
-#       - tmux
-#       - vim
-#     state: present
-#   become: true
-#
+- name: Install base packages
+  pacman:
+    name:
+      - git
+      - jq
+      - less
+      - man-db
+      - openssh
+      - plocate
+      - tmux
+      - vim
+    state: present
+  become: true
+
 # - name: Install yay
 #   kewlfft.aur.aur:
 #     name: yay-bin

@@ -1,6 +1,8 @@
-- name: Install OpenSSH
+- name: Install server packages
   pacman:
-    name: openssh
+    name:
+      - emacs-nox
+      - openssh
     state: present
   become: true
 
@@ -9,8 +11,18 @@
     path: /etc/ssh/sshd_config
     regexp: "^#?PermitRootLogin"
     line: "PermitRootLogin no"
-    become: true
-    notify: Restart ssh
+    state: present
+  become: true
+  notify: Restart sshd
+
+- name: Disable ssh passwords
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^#?PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  become: true
+  notify: Restart sshd
 
 - name: Enable and start ssh
   systemd:
