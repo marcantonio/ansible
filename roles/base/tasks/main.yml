@@ -7,6 +7,7 @@
       - man-db
       - openssh
       - plocate
+      - rsync
       - tmux
       - vim
     state: present
